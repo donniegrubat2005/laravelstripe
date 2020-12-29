@@ -77,11 +77,8 @@ class SubscriptionController extends Controller
         } else {
             $couponCode = "Hgew9EYe";
             $user = User::find(Auth::user()->id);
-            //$user->subscription('default')->updateStripeSubscription(['coupon' => $couponCode]);
             $user->subscription('default')->swapAndInvoice($plan->stripe_plan)
                 ->updateStripeSubscription(['coupon' => $couponCode]);
-            //$this->updateCoupon();
-
         }
         return back();
     }
